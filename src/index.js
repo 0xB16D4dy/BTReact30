@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import BaiTapThucHanhLayout from './BaiTapLayoutComponent/BaiTapThucHanhLayout';
 import BaiTapGioHangComponent from './BaiTapGioHang/BaiTapGioHangComponent';
 import Home from './Pages/Home/Home';
@@ -16,6 +16,7 @@ root.render(
             <Route index element={<Home/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='BaiTapGioHangComponent' element={<BaiTapGioHangComponent/>}></Route>
+            <Route path='*' element={<Navigate to=''/>}></Route>
           </Route>
           <Route path='BaiTapLayOutComponent' element={<BaiTapThucHanhLayout/>}></Route>
       </Routes>
