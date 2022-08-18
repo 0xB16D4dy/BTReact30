@@ -1,4 +1,3 @@
-import { prettyDOM } from "@testing-library/react";
 import React, { Component } from "react";
 import Cart from "./Cart";
 import ProductList from "./ProductList";

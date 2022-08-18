@@ -16,11 +16,13 @@ export default class Header extends Component {
               </a>
             </li>
             <li className="nav-item">
+            {/* eslint-disable-next-line */}
               <a className="nav-link" href="#">
                 About
               </a>
             </li>
             <li className="nav-item">
+              {/* eslint-disable-next-line */}
               <a className="nav-link" href="#">
                 Contact
               </a>
