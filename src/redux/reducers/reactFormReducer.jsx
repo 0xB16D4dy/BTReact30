@@ -18,6 +18,12 @@ const initialState = {
     name:'',
     sdt:0,
     email:''
+  },
+  sinhVienEdit:{
+    id:0,
+    name:'',
+    sdt:0,
+    email:''
   }
 };
 
@@ -42,6 +48,18 @@ export default (state = initialState, { type, payload }) => {
       sinhVienCapNhat[id] = value;
       state.sinhVien = sinhVienCapNhat;
       return {...state}
+    }
+    case 'HANDLE_DELETE':{
+      let {id} = payload;
+      let arrSinhVienUpdate = [...state.arrSinhVien];
+      arrSinhVienUpdate = arrSinhVienUpdate.filter(sv=>sv.id!==id);
+      state.arrSinhVien = arrSinhVienUpdate
+      return {...state};
+    }
+    case 'HANDLE_EDIT':{
+      let {sinhVienEdit} = payload;
+      console.log(sinhVienEdit);
+      return null;
     }
     default:
       return state;

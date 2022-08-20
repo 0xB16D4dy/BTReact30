@@ -11,8 +11,24 @@ class DanhSachSV extends Component {
               <td>{sv.sdt}</td>
               <td>{sv.email}</td>
               <td>
-                <button className='btn btn-danger me-2'>Delete</button>
-                <button className='btn btn-primary'>Edit</button>
+                <button className='btn btn-danger me-2' onClick={() => { 
+                  const action = {
+                    type: 'HANDLE_DELETE',
+                    payload:{
+                      id:sv.id,
+                    }
+                  }
+                  this.props.dispatch(action);
+                 }}>Delete</button>
+                <button className='btn btn-primary' onClick={() => { 
+                    const action = {
+                      type:'HANDLE_EDIT',
+                      payload:{
+                        sinhVienEdit:sv,
+                      }
+                    }
+                    this.props.dispatch(action)
+                 }}>Edit</button>
               </td>
             </tr>
       )

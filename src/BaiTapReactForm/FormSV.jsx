@@ -24,6 +24,14 @@ class FormSV extends Component {
     };
     this.props.dispatch(action);
   };
+  componentWillReceiveProps(newProps){
+    // const action = {
+    //   sinhVienCapNhat:newProps.sinhVienCapNhat
+    // }
+    // this.props.dispatch(action)
+    console.log(newProps);
+    console.log('componentWillReceiveProps')
+  }
   render() {
     return (
       <div className='card'>
