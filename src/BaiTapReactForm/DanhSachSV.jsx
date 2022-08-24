@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 class DanhSachSV extends Component {
   renderTable = (arrSinhVien) => {
-    return arrSinhVien.map((sv) => { 
+    return arrSinhVien.map((sv,index) => { 
       return (
-        <tr key={sv.id}> 
+        <tr key={index}> 
               <td>{sv.id}</td>
               <td>{sv.name}</td>
               <td>{sv.sdt}</td>
