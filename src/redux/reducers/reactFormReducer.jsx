@@ -13,6 +13,7 @@ const initialState = {
       email: 'nguyenvanb@gmail.com',
     },
   ],
+  arrSinhVienSearch: [],
   sinhVienEdit: {
     id: '',
     name: '',
@@ -64,6 +65,17 @@ export default (state = initialState, { type, payload }) => {
         }
       }
       state.arrSinhVien = arrSinhVienUpdate;
+      return { ...state };
+    }
+    case 'HANDLE_SEARCH': {
+      let { valueSearch } = payload;
+      let arrSinhVienUpdate = [...state.arrSinhVien];
+      arrSinhVienUpdate = arrSinhVienUpdate.filter(
+        (sv) =>
+          sv.id === valueSearch.trim() ||
+          sv.name.toLowerCase().includes(valueSearch.trim().toLowerCase())
+      );
+      state.arrSinhVienSearch = arrSinhVienUpdate
       return { ...state };
     }
     default:
