@@ -20,6 +20,7 @@ const initialState = {
     sdt: '',
     email: '',
   },
+  isSearch: false
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -60,15 +61,17 @@ export default (state = initialState, { type, payload }) => {
         (sv) => sv.id === sinhVienUpdate.id
       );
       if (sinhVienEditUpdate) {
-        for (let key in sinhVienEditUpdate) {
-          sinhVienEditUpdate[key] = sinhVienUpdate[key];
+        if (sinhVienEditUpdate['id']!==sinhVienUpdate['id']){
+          for (let key in sinhVienEditUpdate) {
+            sinhVienEditUpdate[key] = sinhVienUpdate[key];
+          }
         }
       }
       state.arrSinhVien = arrSinhVienUpdate;
       return { ...state };
     }
     case 'HANDLE_SEARCH': {
-      let { valueSearch } = payload;
+      let { valueSearch,isSearch } = payload;
       let arrSinhVienUpdate = [...state.arrSinhVien];
       arrSinhVienUpdate = arrSinhVienUpdate.filter(
         (sv) =>
@@ -76,6 +79,7 @@ export default (state = initialState, { type, payload }) => {
           sv.name.toLowerCase().includes(valueSearch.trim().toLowerCase())
       );
       state.arrSinhVienSearch = arrSinhVienUpdate
+      state.isSearch = isSearch
       return { ...state };
     }
     default:

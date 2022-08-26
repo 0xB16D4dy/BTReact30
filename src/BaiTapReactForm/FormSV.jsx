@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class FormSV extends Component {
   state = {
     sinhVien: {
@@ -17,6 +16,7 @@ class FormSV extends Component {
       email: '',
     },
   };
+  
   handleChange = (tagInput) => {
     let { id, value, pattern } = tagInput;
     let dataType = tagInput.getAttribute('data-type');
@@ -114,6 +114,14 @@ class FormSV extends Component {
     }
     this.props.dispatch(action);
   };
+  // static getDerivedStateFromProps(newProps, currentState) {
+  //   console.log(newProps.sinhVienEdit.id,currentState.sinhVien.id)
+  //   if (currentState.sinhVien.id === newProps.sinhVienEdit.id){
+  //       currentState.sinhVien = newProps.sinhVienEdit
+  //     return currentState
+  //   }
+  //   return null
+  // }
   componentWillReceiveProps(newProps) {
     this.setState({
       sinhVien: newProps.sinhVienEdit,

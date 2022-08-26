@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class DanhSachSV extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      arrSinhVienCurrent: [],
-    };
-  }
-  renderTable = (arraySV) => {
-    return arraySV.map((sv, index) => {
+  renderTable = (e) => {
+    let {arrSinhVien,arrSinhVienSearch, isSearch} = this.props
+    let arrSV = []
+    if (isSearch){
+      arrSV = [...arrSinhVienSearch]
+    }else{
+      arrSV = [...arrSinhVien]
+    }
+    return arrSV.map((sv, index) => {
       return (
         <tr key={index}>
           <td>{sv.id}</td>
@@ -51,25 +52,20 @@ class DanhSachSV extends Component {
     });
   };
   handleSearch = (tagInput) => {
+    let isSearch = true
+    if(tagInput.value===''){
+      isSearch = false;
+    }
     const action = {
       type: 'HANDLE_SEARCH',
       payload: {
         valueSearch: tagInput.value,
+        isSearch
       },
     };
       this.props.dispatch(action);
   }
-  static getDerivedStateFromProps(newProps,currentState){
-    if(newProps.arrSinhVienSearch.length!==0){
-      currentState.arrSinhVienCurrent =  newProps.arrSinhVienSearch;
-    }
-    else{
-      currentState.arrSinhVienCurrent = newProps.arrSinhVien;
-    }
-    return currentState
-  }
   render() {
-    let { arrSinhVienCurrent } = this.state;
     return (
       <div className='mt-3'>
         <div className='search-wrapper d-flex my-3' role='search'>
@@ -96,7 +92,7 @@ class DanhSachSV extends Component {
               <th></th>
             </tr>
           </thead>
-          <tbody>{this.renderTable(arrSinhVienCurrent)}</tbody>
+          <tbody>{this.renderTable()}</tbody>
         </table>
       </div>
     );
@@ -105,6 +101,7 @@ class DanhSachSV extends Component {
 const mapStateToProps = (state) => ({
   arrSinhVien: state.reactFormReducer.arrSinhVien,
   arrSinhVienSearch: state.reactFormReducer.arrSinhVienSearch,
+  isSearch: state.reactFormReducer.isSearch
 });
 
 export default connect(mapStateToProps)(DanhSachSV);
