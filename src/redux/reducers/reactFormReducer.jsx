@@ -20,7 +20,8 @@ const initialState = {
     sdt: '',
     email: '',
   },
-  isSearch: false
+  isSearch: false,
+  isEdit: false,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -48,38 +49,39 @@ export default (state = initialState, { type, payload }) => {
       return { ...state };
     }
     case 'HANDLE_EDIT': {
-      let { sinhVienEdit } = payload;
+      let { sinhVienEdit, isEdit } = payload;
       let sinhVienEditUpdate = { ...state.sinhVienEdit };
       sinhVienEditUpdate = sinhVienEdit;
       state.sinhVienEdit = sinhVienEditUpdate;
+      state.isEdit = isEdit;
       return { ...state };
     }
     case 'HANDLE_UPDATE': {
-      let { sinhVienUpdate } = payload;
+      let { sinhVienUpdate, isEdit } = payload;
       let arrSinhVienUpdate = [...state.arrSinhVien];
       let sinhVienEditUpdate = arrSinhVienUpdate.find(
         (sv) => sv.id === sinhVienUpdate.id
       );
       if (sinhVienEditUpdate) {
-        if (sinhVienEditUpdate['id']!==sinhVienUpdate['id']){
-          for (let key in sinhVienEditUpdate) {
-            sinhVienEditUpdate[key] = sinhVienUpdate[key];
-          }
+        for (let key in sinhVienEditUpdate) {
+          sinhVienEditUpdate[key] = sinhVienUpdate[key];
         }
       }
+      console.log(arrSinhVienUpdate);
       state.arrSinhVien = arrSinhVienUpdate;
+      state.isEdit = isEdit;
       return { ...state };
     }
     case 'HANDLE_SEARCH': {
-      let { valueSearch,isSearch } = payload;
+      let { valueSearch, isSearch } = payload;
       let arrSinhVienUpdate = [...state.arrSinhVien];
       arrSinhVienUpdate = arrSinhVienUpdate.filter(
         (sv) =>
           sv.id === valueSearch.trim() ||
           sv.name.toLowerCase().includes(valueSearch.trim().toLowerCase())
       );
-      state.arrSinhVienSearch = arrSinhVienUpdate
-      state.isSearch = isSearch
+      state.arrSinhVienSearch = arrSinhVienUpdate;
+      state.isSearch = isSearch;
       return { ...state };
     }
     default:

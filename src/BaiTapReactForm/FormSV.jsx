@@ -16,7 +16,7 @@ class FormSV extends Component {
       email: '',
     },
   };
-  
+
   handleChange = (tagInput) => {
     let { id, value, pattern } = tagInput;
     let dataType = tagInput.getAttribute('data-type');
@@ -92,6 +92,7 @@ class FormSV extends Component {
       type: 'HANDLE_UPDATE',
       payload: {
         sinhVienUpdate: this.state.sinhVien,
+        isEdit: false,
       },
     };
     for (let key in errors) {
@@ -129,6 +130,7 @@ class FormSV extends Component {
   }
   render() {
     let { id, name, sdt, email } = this.state.sinhVien;
+    let { isEdit } = this.props;
     return (
       <div className='card'>
         <h3 className='card-header text-center bg-dark text-white'>
@@ -140,15 +142,25 @@ class FormSV extends Component {
         >
           <div className='col-6'>
             <label className='form-label'>Mã SV</label>
-            <input
-              type='text'
-              id='id'
-              className='form-control'
-              value={id}
-              onChange={(e) => {
-                this.handleChange(e.target);
-              }}
-            />
+            {isEdit ? (
+              <input
+                type='text'
+                id='id'
+                className='form-control'
+                value={id}
+                disabled={true}
+              />
+            ) : (
+              <input
+                type='text'
+                id='id'
+                className='form-control'
+                value={id}
+                onChange={(e) => {
+                  this.handleChange(e.target);
+                }}
+              />
+            )}
             <p className='text-danger'>{this.state.errors.id}</p>
           </div>
           <div className='col-6'>
@@ -216,6 +228,7 @@ class FormSV extends Component {
 
 const mapStateToProps = (state) => ({
   sinhVienEdit: state.reactFormReducer.sinhVienEdit,
+  isEdit: state.reactFormReducer.isEdit,
 });
 
 export default connect(mapStateToProps)(FormSV);

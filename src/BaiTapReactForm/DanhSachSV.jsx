@@ -5,11 +5,13 @@ class DanhSachSV extends Component {
   renderTable = (e) => {
     let {arrSinhVien,arrSinhVienSearch, isSearch} = this.props
     let arrSV = []
+    console.log(isSearch)
     if (isSearch){
       arrSV = [...arrSinhVienSearch]
     }else{
       arrSV = [...arrSinhVien]
     }
+    console.log(arrSinhVien)
     return arrSV.map((sv, index) => {
       return (
         <tr key={index}>
@@ -39,6 +41,7 @@ class DanhSachSV extends Component {
                   type: 'HANDLE_EDIT',
                   payload: {
                     sinhVienEdit: sv,
+                    isEdit:true
                   },
                 };
                 this.props.dispatch(action);
