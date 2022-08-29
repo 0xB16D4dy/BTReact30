@@ -50,8 +50,8 @@ function App() {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className='dropdown-item' style={{ background: 'white', color: 'black' }} to='#'>
-                      Baitap 2
+                    <NavLink className='dropdown-item' style={{ background: 'white', color: 'black' }} to='/baitapdatve'>
+                      Bài tập đặt vé
                     </NavLink>
                   </li>
                 </ul>
@@ -73,7 +73,7 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className='container' style={{ minHeight: 613 }}>
+      <div style={{ minHeight: 613 }}>
         <Outlet />
       </div>
       <footer className='bg-dark text-center text-white p-5'>Footer</footer>

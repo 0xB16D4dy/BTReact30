@@ -9,6 +9,7 @@ import Home from './Pages/Home/Home';
 import { Provider } from 'react-redux';
 import ReactForm from './BaiTapReactForm/ReactForm';
 import { store } from './redux/configStore';
+import BaiTapDatVe from './BaiTapDatVe/BaiTapDatVe';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
               element={<BaiTapGioHangComponent />}
             ></Route>
             <Route path='baitapreactform' element={<ReactForm/>}></Route>
+            <Route path='baitapdatve' element={<BaiTapDatVe/>}></Route>
             <Route path='*' element={<Navigate to='' />}></Route>
           </Route>
           <Route

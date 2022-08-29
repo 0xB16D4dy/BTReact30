@@ -1,8 +1,10 @@
 import reactFormReducer from './reducers/reactFormReducer';
+import DatVeReducer from './reducers/DatVeReducer';
 const { combineReducers, createStore } = require('redux');
 
 const rootReducer = combineReducers({
   reactFormReducer,
+  DatVeReducer
 });
 
 export const store = createStore(
